@@ -16,4 +16,5 @@ use App\Http\Controllers\api\ItemController;
 |
 */
 Route::post('login', [UserController::class, 'login']);
+Route::post('logout', [UserController::class, 'logout']);
 Route::middleware('auth:sanctum')->resource('item', ItemController::class);

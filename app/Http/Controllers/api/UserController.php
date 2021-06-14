@@ -4,12 +4,12 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
-    public function login(Request $request) 
+    public function login(Request $request)
     {
         $request->validate([
             'email'    => 'email|required',
@@ -31,6 +31,14 @@ class UserController extends Controller
             'token' => auth()->user()->createToken('auth-token')->plainTextToken,
             'status' => true,
             'message' => 'Login Successful'
+        ]);
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return response()->json([
+            'status' => true,
+            'message' => 'Logout Successful'
         ]);
     }
 }

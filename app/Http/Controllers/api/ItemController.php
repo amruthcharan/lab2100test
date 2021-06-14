@@ -41,9 +41,9 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $item = Item::find($request->post('id'));
+        $item = Item::find($id);
         if (!$item) {
             return response()->json([
                 'status' => false,
@@ -79,9 +79,10 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $item = Item::find($request->post('id'));
+        logger($id);
+        $item = Item::find($id);
         if (!$item) {
             return response()->json([
                 'status' => false,
